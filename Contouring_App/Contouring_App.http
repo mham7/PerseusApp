@@ -1,0 +1,6 @@
+@Contouring_App_HostAddress = http://localhost:5146
+
+GET {{Contouring_App_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
