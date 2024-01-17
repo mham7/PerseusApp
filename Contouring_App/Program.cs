@@ -1,4 +1,4 @@
-using Contouring_App.Entities;
+using Contouring_App.Persistance.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 

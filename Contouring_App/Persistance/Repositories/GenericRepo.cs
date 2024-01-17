@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using Contouring_App.Entities;
 using Contouring_App.Persistance.Repositories.Interfaces;
+using Contouring_App.Persistance.Context;
 
 namespace Contouring_App.Persistance.Repositories
 

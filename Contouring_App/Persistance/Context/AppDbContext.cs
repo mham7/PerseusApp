@@ -1,7 +1,9 @@
 ﻿global using Microsoft.EntityFrameworkCore;
-namespace Contouring_App.Entities
+using Contouring_App.Entities;
+
+namespace Contouring_App.Persistance.Context
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
