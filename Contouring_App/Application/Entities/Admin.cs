@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Contouring_App.Entities
+namespace Contouring_App.Application.Entities
 {
     public class Admin
     {
@@ -10,6 +10,6 @@ namespace Contouring_App.Entities
 
         public DateOnly DOB { get; set; }
 
-        public int Salary {  get; set; }
+        public int Salary { get; set; }
     }
 }

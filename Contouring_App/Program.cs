@@ -1,9 +1,14 @@
 using Contouring_App.Persistance.Context;
+using Contouring_App.Persistance.Repositories.Interfaces;
+using Contouring_App.Persistance.Repositories;
+using Contouring_App.Persistance.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
+// Add Unit of Work
+builder.Services.AddScoped<IUnitofWork, UnitofWork>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

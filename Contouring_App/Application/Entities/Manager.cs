@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Contouring_App.Entities
+namespace Contouring_App.Application.Entities
 {
-    public class Trainee
+    public class Manager
     {
-        [Key]  public int Employee_Id { get; set; }
+        [Key] public int Employee_Id { get; set; }
 
         public string Name { get; set; }
         public int Division_id { get; set; }

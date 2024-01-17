@@ -1,5 +1,5 @@
 ﻿
-using Contouring_App.Entities;
+using Contouring_App.Application.Entities;
 
 namespace Contouring_App.Persistance.Repositories.Interfaces
 {
