@@ -1,58 +1,57 @@
 ﻿using Contouring_App.Application.Entities;
-using Contouring_App.Application.Services;
 using Contouring_App.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata;
 
 namespace Contouring_App.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DivisionController : ControllerBase
+    public class DevsController : ControllerBase
     {
-        private readonly IDivisionService _divisonService;
-        public DivisionController(IDivisionService divisionService)
+
+        private readonly IDevService _devService;
+        public DevsController(IDevService devService)
         {
-            _divisonService=divisionService;
+            _devService = devService;
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<Division>>> GetAllDivs()
+        public async Task<ActionResult<List<Dev>>> GetAllDevs()
         {
-            if(_divisonService.GetAll() == null)
+            if (_devService.GetAll() == null)
             {
                 return NotFound();
             }
             else
             {
-                return Ok(_divisonService.GetAll());
+                return Ok(_devService.GetAll());
             }
         }
 
         [HttpPost("Add")]
 
-        public async Task<ActionResult<Division>> AddDev(Division div)
+        public async Task<ActionResult<Dev>> AddDev(Dev dev)
         {
-            if (div == null)
+            if (dev == null)
             {
                 return BadRequest();
             }
             else
             {
-                _divisonService.Add(div);
-                return Ok(div);
+                _devService.Add(dev);
+                return Ok(dev);
             }
         }
 
         [HttpDelete("Delete")]
 
-        public async Task<ActionResult<Division>> DeleteDiv(int id)
+        public async Task<ActionResult<Dev>> DeleteDev(int id)
         {
             if (id != 0)
             {
-                Division a = _divisonService.GetById(id);
-                _divisonService.Delete(a);
+                Dev a = _devService.GetById(id);
+                _devService.Delete(a);
                 return Ok(a);
             }
             else
@@ -64,12 +63,12 @@ namespace Contouring_App.Presentation.Controllers
 
         [HttpPut("Update")]
 
-        public ActionResult<Division> UpdateDiv(Division div)
+        public ActionResult<Dev> UpdateDev(Dev dev)
         {
             try
             {
-                _divisonService.Update(div);
-                return Ok(div);
+                _devService.Update(dev);
+                return Ok(dev);
             }
             catch (Exception ex)
             {
@@ -79,9 +78,9 @@ namespace Contouring_App.Presentation.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Division>> GetDiv(int id)
+        public async Task<ActionResult<Dev>> GetDev(int id)
         {
-            Division a = _divisonService.GetById(id);
+            Dev a = _devService.GetById(id);
             if (a == null)
             {
                 return NotFound(id);
@@ -93,3 +92,4 @@ namespace Contouring_App.Presentation.Controllers
         }
     }
 }
+

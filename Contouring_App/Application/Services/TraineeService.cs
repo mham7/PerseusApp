@@ -1,33 +1,42 @@
 ﻿using Contouring_App.Application.Entities;
 using Contouring_App.Application.Services.Interfaces;
+using Contouring_App.Persistance.Repositories.Interfaces;
+using Contouring_App.Persistance.UnitOfWork;
 
 namespace Contouring_App.Application.Services
 {
     public class TraineeService : ITraineeService
     {
+        private readonly IUnitofWork _unit;
+        private readonly IGenericRepo<Trainee> _gen;
+        public TraineeService(IUnitofWork unit, IGenericRepo<Trainee> gen)
+        {
+            _unit = unit;
+            _gen = gen;
+        }
         public void Add(Trainee trainee)
         {
-            throw new NotImplementedException();
+            _gen.Add(trainee);
         }
 
         public void Delete(Trainee trainee)
         {
-            throw new NotImplementedException();
+            _gen.Delete(trainee);
         }
 
         public IEnumerable<Trainee> GetAll()
         {
-            throw new NotImplementedException();
+            return _gen.GetAll();
         }
 
         public Trainee GetById(int id)
         {
-            throw new NotImplementedException();
+            return _gen.GetById(id);
         }
 
         public void Update(Trainee trainee)
         {
-            throw new NotImplementedException();
+             _gen.Update(trainee);
         }
     }
 }

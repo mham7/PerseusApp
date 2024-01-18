@@ -1,9 +1,10 @@
 ﻿using Contouring_App.Application.Entities;
+using Contouring_App.Persistance.UnitOfWork;
 using System;
 
 namespace Contouring_App.Application.Services.Interfaces
 {
-    public interface IAdminService
+    public interface IAdminService 
     {
 
         public Admin GetById(int id);

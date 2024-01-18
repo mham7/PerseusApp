@@ -1,33 +1,44 @@
 ﻿using Contouring_App.Application.Entities;
 using Contouring_App.Application.Services.Interfaces;
+using Contouring_App.Persistance.Repositories.Interfaces;
+using Contouring_App.Persistance.UnitOfWork;
 
 namespace Contouring_App.Application.Services
 {
     public class DevService : IDevService
     {
+        private readonly IUnitofWork _unit;
+        private readonly IGenericRepo<Dev> _gen;
+
+        public DevService(IGenericRepo<Dev> gen, IUnitofWork unit)
+        {
+            _unit = unit;
+            _gen = gen;
+        }
         public void Add(Dev dev)
         {
-            throw new NotImplementedException();
+            _gen.Add(dev);
         }
 
         public void Delete(Dev dev)
         {
-            throw new NotImplementedException();
+            _gen.Delete(dev);
         }
 
         public IEnumerable<Dev> GetAll()
         {
-            throw new NotImplementedException();
+            return _gen.GetAll();
         }
 
         public Dev GetById(int id)
         {
-            throw new NotImplementedException();
+            Dev dev = _gen.GetById(id);
+            return dev;
         }
 
         public void Update(Dev dev)
         {
-            throw new NotImplementedException();
+            _gen.Update(dev);
         }
     }
 }

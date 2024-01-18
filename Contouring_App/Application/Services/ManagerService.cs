@@ -1,33 +1,43 @@
 ﻿using Contouring_App.Application.Entities;
 using Contouring_App.Application.Services.Interfaces;
+using Contouring_App.Persistance.Repositories.Interfaces;
+using Contouring_App.Persistance.UnitOfWork;
 
 namespace Contouring_App.Application.Services
 {
     public class ManagerService : IManagerService
     {
+        private readonly IGenericRepo<Manager> _gen;
+        private readonly IUnitofWork _unit;
+
+        public ManagerService(IUnitofWork unit, IGenericRepo<Manager> gen) {
+            _unit = unit;
+            _gen = gen;
+        }
         public void Add(Manager manager)
         {
-            throw new NotImplementedException();
+            _gen.Add(manager);
         }
 
         public void Delete(Manager manager)
         {
-            throw new NotImplementedException();
+            _gen.Delete(manager);
         }
 
         public IEnumerable<Manager> GetAll()
         {
-            throw new NotImplementedException();
+
+            return _gen.GetAll();
         }
 
         public Manager GetById(int id)
         {
-            throw new NotImplementedException();
+            return _gen.GetById(id);
         }
 
         public void Update(Manager manager)
         {
-            throw new NotImplementedException();
+             _gen.Update(manager);
         }
     }
 }

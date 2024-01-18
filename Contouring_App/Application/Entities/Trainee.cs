@@ -11,8 +11,7 @@ namespace Contouring_App.Application.Entities
 
         public int Tenure_year { get; set; }
 
-        public DateOnly DOB { get; set; }
-
+      
         public int Salary { get; set; }
     }
 }
