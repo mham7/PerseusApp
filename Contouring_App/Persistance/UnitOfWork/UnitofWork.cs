@@ -19,7 +19,7 @@ namespace Contouring_App.Persistance.UnitOfWork
 
         public IUserRepo users { get; }
         public UnitofWork(AppDbContext appcontext, IAdminRepo adminrepo,
-         IDevRepo devrepo, IManagerRepo managerrepo,ITraineeRepo traineerepo, IDivisionRepo divrepo)
+         IDevRepo devrepo, IManagerRepo managerrepo,ITraineeRepo traineerepo, IDivisionRepo divrepo,IUserRepo userrepo)
         {
             _appcontext = appcontext;
             admins = adminrepo;
@@ -27,6 +27,7 @@ namespace Contouring_App.Persistance.UnitOfWork
             managers = managerrepo;
             trainees = traineerepo;
             divs = divrepo;
+            users = userrepo;
         }
        
 

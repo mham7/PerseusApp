@@ -1,6 +1,8 @@
 ﻿using Contouring_App.Application.Entities;
+using Contouring_App.Application.Entities.Dtos;
 using Contouring_App.Application.Services;
 using Contouring_App.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +18,7 @@ namespace Contouring_App.Presentation.Controllers
       
 
         [HttpGet("GetAll")]
+        [Authorize]
         public async Task<ActionResult<List<Usercs>>> GetAllUsercss()
         {
             if (_userService.GetAll() == null)
@@ -28,8 +31,26 @@ namespace Contouring_App.Presentation.Controllers
             }
         }
 
-        [HttpPost("Add")]
 
+
+        [HttpPost("Login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<Usercs>> SigninUser(Userdto div)
+        {
+            if (div == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(_userService.Login(div));
+
+            }
+        }
+
+
+        [HttpPost("Register")]
+        [AllowAnonymous]
         public async Task<ActionResult<Usercs>> AddUsercs(Usercs div)
         {
             if (div == null)
@@ -38,13 +59,13 @@ namespace Contouring_App.Presentation.Controllers
             }
             else
             {
-                _userService.Add(div);
-                return Ok(div);
+               return Ok (_userService.Register(div));
+                
             }
         }
 
         [HttpDelete("Delete")]
-
+        [Authorize]
         public async Task<ActionResult<Usercs>> DeleteUsercs(int id)
         {
             if (id != 0)
@@ -61,8 +82,8 @@ namespace Contouring_App.Presentation.Controllers
 
 
         [HttpPut("Update")]
-
-        public ActionResult<Division> UpdateUsercs(Usercs mang)
+        [Authorize]
+        public async Task<ActionResult<Usercs>> UpdateUsercs(Usercs mang)
         {
             try
             {
@@ -77,6 +98,7 @@ namespace Contouring_App.Presentation.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Usercs>> GetUsercs(int id)
         {
             Usercs a = _userService.GetById(id);
