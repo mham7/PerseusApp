@@ -76,22 +76,40 @@ namespace Contouring_App.Application.Services
         public string Tokenization(Usercs user)
         {
 
+            var config = _config.GetSection("Jwt");
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Key"]!));
+            var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier,user.Name),
-                new Claim(ClaimTypes.Role,user.Email)
+                new Claim(ClaimTypes.NameIdentifier,user.Name)
             };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("JWT:SecretKey").Value!));
-            var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
             var token = new JwtSecurityToken(
                 claims: claims,
+                audience: config["Audience"],
+                issuer: config["Issuer"],
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: cred
                 );
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-            string jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
+            ////-------------------------------------------
+            //List<Claim> claims = new List<Claim>
+            //{
+            //    new Claim(ClaimTypes.NameIdentifier,user.Name),
+            //    new Claim(ClaimTypes.Role,user.Email)
+            //};
+
+            //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("JWT:SecretKey").Value!));
+            //var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            //var token = new JwtSecurityToken(
+            //    claims: claims,
+            //    expires: DateTime.Now.AddDays(1),
+            //    signingCredentials: cred
+            //    );
+
+            //string jwt = new JwtSecurityTokenHandler().WriteToken(token);
+            //return jwt;
         }
 
       

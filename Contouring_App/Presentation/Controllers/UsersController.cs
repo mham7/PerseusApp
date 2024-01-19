@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Contouring_App.Presentation.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/[controller]"), Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -18,8 +17,7 @@ namespace Contouring_App.Presentation.Controllers
       
 
         [HttpGet("GetAll")]
-        [Authorize]
-        public async Task<ActionResult<List<Usercs>>> GetAllUsercss()
+        public async Task<IActionResult> GetAllUsercss()
         {
             if (_userService.GetAll() == null)
             {
@@ -35,7 +33,7 @@ namespace Contouring_App.Presentation.Controllers
 
         [HttpPost("Login")]
         [AllowAnonymous]
-        public async Task<ActionResult<Usercs>> SigninUser(Userdto div)
+        public async Task<ActionResult<Usercs>> SigninUser([FromBody] Userdto div)
         {
             if (div == null)
             {
