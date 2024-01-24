@@ -1,11 +1,13 @@
 ﻿using Contouring_App.Application.Entities;
 using Contouring_App.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Contouring_App.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"),Authorize]
     [ApiController]
     public class DevsController : ControllerBase
     {
@@ -16,9 +18,11 @@ namespace Contouring_App.Presentation.Controllers
             _devService = devService;
         }
 
+        [ResponseCache(Duration = 60 * 60)]
         [HttpGet("GetAll")]
         public async Task<ActionResult<List<Dev>>> GetAllDevs()
         {
+            
             if (_devService.GetAll() == null)
             {
                 return NotFound();
@@ -26,6 +30,19 @@ namespace Contouring_App.Presentation.Controllers
             else
             {
                 return Ok(_devService.GetAll());
+            }
+        }
+
+        [HttpGet("GetStacks")]
+        public async Task<ActionResult<List<Dev>>> GetStackDevs(string techstack)
+        {
+            if (_devService.getstacklist(techstack) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(_devService.getstacklist(techstack));
             }
         }
 
@@ -77,6 +94,7 @@ namespace Contouring_App.Presentation.Controllers
 
         }
 
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Dev>> GetDev(int id)
         {
@@ -88,6 +106,23 @@ namespace Contouring_App.Presentation.Controllers
             else
             {
                 return Ok(a);
+            }
+        }
+
+        //Pagination
+        [HttpGet("GetDevPages")]
+        public async Task<ActionResult<List<Dev>>> GetDevPages([FromQuery] int page = 1, [FromQuery] int per_page = 5)
+        {
+            var devs = _devService.GetAll();
+
+            if (devs == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var pagedDevs = devs.Skip((page - 1) * per_page).Take(per_page).ToList();
+                return Ok(pagedDevs);
             }
         }
     }

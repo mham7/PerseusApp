@@ -1,4 +1,5 @@
 ﻿using Contouring_App.Application.Entities;
+using Contouring_App.Application.Entities.Dtos;
 
 namespace Contouring_App.Application.Services.Interfaces
 {
@@ -9,5 +10,6 @@ namespace Contouring_App.Application.Services.Interfaces
         public void Add(Division division);
         public void Update(Division division);
         public void Delete(Division division);
+        public List<Divlist> GetDivisions(int div_id);
     }
 }

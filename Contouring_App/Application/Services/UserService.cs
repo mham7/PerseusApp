@@ -47,8 +47,7 @@ namespace Contouring_App.Application.Services
         }
 
         public string Login(Userdto user)
-        {
-            user.password= BCrypt.Net.BCrypt.HashPassword(user.password);
+        { 
             Usercs authuser =_unit.users.CheckAuthenticate(user);
             if(authuser == null) {
 

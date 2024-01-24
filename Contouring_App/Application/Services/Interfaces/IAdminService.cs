@@ -12,7 +12,7 @@ namespace Contouring_App.Application.Services.Interfaces
         public void Add(Admin admin);
         public void Update(Admin admin);
         public void Delete(Admin admin);
-        public List<Admin> IsSalaryGreater(List<Admin> admins);
+        public List<Admin> IsSalaryGreater(int salary);
 
 
     }

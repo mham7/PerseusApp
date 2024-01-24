@@ -9,11 +9,17 @@ namespace Contouring_App.Application.Services
     {
         private readonly IUnitofWork _unit;
         private readonly IGenericRepo<Dev> _gen;
+      
 
         public DevService(IGenericRepo<Dev> gen, IUnitofWork unit)
         {
             _unit = unit;
             _gen = gen;
+        }
+
+        public List<Dev> getstacklist(string ts)
+        {
+           return _unit.devs.GetStackList(ts);
         }
         public void Add(Dev dev)
         {

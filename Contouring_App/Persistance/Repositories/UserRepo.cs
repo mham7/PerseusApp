@@ -19,15 +19,15 @@ namespace Contouring_App.Persistance.Repositories
         {
             HashSet<Usercs> users= new HashSet<Usercs>();
 
-            users = _appDbContext.Users.ToHashSet();
+            IQueryable<Usercs> cs = _appDbContext.Users.Where(user => user.Email == cred.email);
 
-            bool val=users.Any(user => user.Email == cred.email);
+            Usercs found_user = cs.First();
 
-            Usercs foundUser = users.FirstOrDefault(user => user.Email == cred.email);
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(cred.password, found_user.Password);
 
-            if (foundUser != null)
+            if (found_user != null && isPasswordValid==true)
             {
-                return foundUser;
+                return found_user;
             }
             else
             {

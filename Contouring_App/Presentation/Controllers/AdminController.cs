@@ -1,11 +1,12 @@
 ﻿using Contouring_App.Application.Entities;
 using Contouring_App.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Contouring_App.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"),Authorize]
     [ApiController]
     public class AdminController : ControllerBase
     {

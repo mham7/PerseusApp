@@ -15,7 +15,8 @@ namespace Contouring_App.Persistance.Repositories
         public List<Dev> GetStackList(string techstack)
         {
             List<Dev> result = new List<Dev>();
-             result = _appDbContext.Set<Dev>().Where(x => x.Techstack == techstack).ToList();
+             IQueryable<Dev> techstck = _appDbContext.Devs.Where(d => d.Techstack == techstack);
+            result= techstck.ToList();
             return result;
         }
     }

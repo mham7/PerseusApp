@@ -24,6 +24,11 @@ namespace Contouring_App.Application.Services
             _gen.Delete(trainee);
         }
 
+        public List<Trainee> GetMinWage(int salary)
+        {
+            return _unit.trainees.GetTraineeswithMinWage(salary);
+        }
+
         public IEnumerable<Trainee> GetAll()
         {
             return _gen.GetAll();

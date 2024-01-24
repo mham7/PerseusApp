@@ -11,5 +11,6 @@ namespace Contouring_App.Application.Services.Interfaces
         public void Add(Trainee trainee);
         public void Update(Trainee trainee);
         public void Delete(Trainee trainee);
+        public List<Trainee> GetMinWage(int salary);
     }
 }

@@ -1,12 +1,13 @@
 ﻿using Contouring_App.Application.Entities;
 using Contouring_App.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Contouring_App.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"), Authorize]
     [ApiController]
     public class TraineesController : ControllerBase
     {
@@ -27,6 +28,14 @@ namespace Contouring_App.Presentation.Controllers
             {
                 return Ok(_traineeService.GetAll());
             }
+        
+        }
+
+        [HttpGet("MinWage")]
+
+        public async Task<ActionResult<List<Trainee>>> GetMinSalary(int salary)
+        {
+            return _traineeService.GetMinWage(salary);
         }
 
         [HttpPost("Add")]

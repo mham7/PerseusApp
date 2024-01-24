@@ -1,26 +1,28 @@
 ﻿using Contouring_App.Application.Entities;
+using Contouring_App.Application.Entities.Dtos;
 using Contouring_App.Application.Services;
 using Contouring_App.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
 
 namespace Contouring_App.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"),Authorize]
     [ApiController]
     public class DivisionController : ControllerBase
     {
         private readonly IDivisionService _divisonService;
         public DivisionController(IDivisionService divisionService)
         {
-            _divisonService=divisionService;
+            _divisonService = divisionService;
         }
 
         [HttpGet("GetAll")]
         public async Task<ActionResult<List<Division>>> GetAllDivs()
         {
-            if(_divisonService.GetAll() == null)
+            if (_divisonService.GetAll() == null)
             {
                 return NotFound();
             }
@@ -30,6 +32,13 @@ namespace Contouring_App.Presentation.Controllers
             }
         }
 
+
+        [HttpGet("GetEmployeeDivisions")]
+
+        public async Task<ActionResult<List<Divlist>>> GetEmpDivs(int div_id)
+        {
+           return _divisonService.GetDivisions(div_id);
+        }
         [HttpPost("Add")]
 
         public async Task<ActionResult<Division>> AddDev(Division div)

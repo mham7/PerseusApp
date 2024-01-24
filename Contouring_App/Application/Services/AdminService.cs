@@ -36,9 +36,9 @@ namespace Contouring_App.Application.Services
             return admin;
         }
 
-        public List<Admin> IsSalaryGreater(List<Admin> admins)
+        public List<Admin> IsSalaryGreater(int salary)
         {
-            return _unit.admins.IsSalaryGreater(admins);
+            return _unit.admins.IsSalaryGreater(salary);
 
         }
 

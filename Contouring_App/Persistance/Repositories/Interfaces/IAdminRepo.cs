@@ -4,6 +4,6 @@ namespace Contouring_App.Persistance.Repositories.Interfaces
 {
     public interface IAdminRepo
     {
-        public List<Admin> IsSalaryGreater(List<Admin> admins);
+        public List<Admin> IsSalaryGreater(int count);
     }
 }
