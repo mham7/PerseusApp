@@ -3,8 +3,8 @@ using Contouring_App.Application.Entities.Dtos;
 
 namespace Contouring_App.Persistance.Repositories.Interfaces
 {
-    public interface IUserRepo
+    public interface IDivisionRepo
     {
-        Usercs CheckAuthenticate(Userdto cred);
+        public List<Divlist> Get_Divisions(int division);
     }
 }

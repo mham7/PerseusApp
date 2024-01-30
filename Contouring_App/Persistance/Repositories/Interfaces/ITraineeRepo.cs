@@ -2,8 +2,10 @@
 
 namespace Contouring_App.Persistance.Repositories.Interfaces
 {
-    public interface IAdminRepo
+    public interface ITraineeRepo
     {
-        public List<Admin> IsSalaryGreater(int count);
+        public List<Trainee> GetTraineeswithMinWage(int salary);
+
+
     }
 }
