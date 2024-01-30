@@ -2,8 +2,8 @@
 
 namespace Contouring_App.Persistance.Repositories.Interfaces
 {
-    public interface IAdminRepo
+    public interface IDivisionRepo
     {
-        public List<Admin> IsSalaryGreater(List<Admin> admins);
+        public List<Division> GetNum_Divisions(string division);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using Contouring_App.Entities;
 using Contouring_App.Persistance.Repositories.Interfaces;
+using Contouring_App.Persistance.Context;
 
 namespace Contouring_App.Persistance.Repositories
 
@@ -41,16 +41,23 @@ namespace Contouring_App.Persistance.Repositories
         public void Add(T entity)
         {
             _appContext.Set<T>().Add(entity);
+            SaveChanges();
         }
 
         public void Update(T entity)
         {
             _appContext.Set<T>().Update(entity);
+            SaveChanges();
         }
 
         public void Delete(T entity)
         {
             _appContext.Set<T>().Remove(entity);
+            SaveChanges();
+        }
+        public void SaveChanges()
+        {
+            _appContext.SaveChanges();
         }
     }
 

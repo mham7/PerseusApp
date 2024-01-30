@@ -3,11 +3,11 @@ using Contouring_App.Persistance.Repositories.Interfaces;
 
 namespace Contouring_App.Persistance.Repositories
 {
-    public class UserRepo : IUserRepo
+    public class TraineeRepo : ITraineeRepo
     {
-        List<Usercs> IUserRepo.GetAuthenticatedUsers(List<Usercs> users)
+        public List<Trainee> GetTraineesTenure(int year)
         {
-            return users.Where(user => user.IsAuthenticated = true).ToList();
+            throw new NotImplementedException();
         }
     }
 }

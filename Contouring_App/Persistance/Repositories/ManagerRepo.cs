@@ -3,11 +3,11 @@ using Contouring_App.Persistance.Repositories.Interfaces;
 
 namespace Contouring_App.Persistance.Repositories
 {
-    public class UserRepo : IUserRepo
+    public class ManagerRepo : IManagerRepo
     {
-        List<Usercs> IUserRepo.GetAuthenticatedUsers(List<Usercs> users)
+        public List<string> getCommonDivisions(Manager manager)
         {
-            return users.Where(user => user.IsAuthenticated = true).ToList();
+            throw new NotImplementedException();
         }
     }
 }
