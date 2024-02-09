@@ -12,7 +12,7 @@ namespace Contouring_App.Entities
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server= .\\SQLEXPRESS;Database=Perseus;Trusted_Connection=true;MultipleActiveResultSets=True; TrustServerCertificate=true; ");
+            optionsBuilder.UseSqlServer("Server= .\\SQLEXPRESS;Database=Contour;Trusted_Connection=true;MultipleActiveResultSets=True; TrustServerCertificate=true; ");
         }
 
 
